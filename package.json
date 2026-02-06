@@ -1,0 +1,57 @@
+{
+  "name": "@endpoint-fetcher/retry",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Retry plugin for endpoint-fetcher with configurable retry strategies",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts --clean",
+    "watch": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "endpoint-fetcher",
+    "plugin",
+    "retry",
+    "typescript",
+    "api-client",
+    "fetch",
+    "type-safe"
+  ],
+  "author": "Lorenzo Vecchio",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lorenzovecchio/endpoint-fetcher-retry.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lorenzovecchio/endpoint-fetcher-retry/issues"
+  },
+  "homepage": "https://endpoint-fetcher.lorenzovecchio.dev/plugins/retry_plugin",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "peerDependencies": {
+    "endpoint-fetcher": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "endpoint-fetcher": "^2.2.3",
+    "tsup": "^8.5.1",
+    "typescript": "^5.0.0"
+  }
+}
