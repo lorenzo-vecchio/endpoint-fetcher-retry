@@ -31,7 +31,7 @@ const defaultConfig: Required<RetryConfig> = {
     return !err.status || err.status >= 500;
   },
   onRetry: () => {},
-  retryStatusCodes: [500, 502, 503, 504],
+  retryStatusCodes: [500, 502, 503, 504, 429],
   retryMethods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
 };
 
