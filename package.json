@@ -1,6 +1,6 @@
 {
   "name": "@endpoint-fetcher/retry",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "type": "module",
   "description": "Retry plugin for endpoint-fetcher with configurable retry strategies",
   "main": "./dist/index.cjs",
