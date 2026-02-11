@@ -1,4 +1,4 @@
-import { createPlugin, PluginOptions } from 'endpoint-fetcher';
+import { createPlugin, PluginOptions, HttpMethod } from 'endpoint-fetcher';
 
 export type RetryStrategy = 'fixed' | 'exponential' | 'linear';
 
@@ -55,7 +55,7 @@ function calculateDelay(
 function shouldRetryRequest(
   error: unknown,
   config: Required<RetryConfig>,
-  context?: { method?: string }
+  context?: { method?: HttpMethod }
 ): boolean {
   const err = error as { status?: number; statusText?: string };
   
@@ -110,8 +110,21 @@ export const retryPlugin = createPlugin('retry', (config?: RetryConfig) => {
   };
 
   return {
-    handlerWrapper: (originalHandler, endpoint) => {
-      return async (input, context) => {
+    handlerWrapper: <TInput, TOutput, TError>(
+      originalHandler: (input: TInput, context: {
+        fetch: typeof fetch;
+        method: HttpMethod;
+        path: string;
+        baseUrl: string;
+      }) => Promise<TOutput>,
+      endpoint: any
+    ) => {
+      return async (input: TInput, context: {
+        fetch: typeof fetch;
+        method: HttpMethod;
+        path: string;
+        baseUrl: string;
+      }) => {
         let lastError: unknown;
         const { maxRetries, baseDelay, maxDelay, strategy, onRetry } = mergedConfig;
 
@@ -139,7 +152,7 @@ export const retryPlugin = createPlugin('retry', (config?: RetryConfig) => {
         }
 
         // This should never be reached, but TypeScript needs it
-        throw lastError;
+        throw lastError!;
       };
     },
   };
