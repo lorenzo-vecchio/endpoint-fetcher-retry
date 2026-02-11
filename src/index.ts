@@ -99,14 +99,14 @@ function shouldRetryRequest(
  * });
  * ```
  */
-export const retryPlugin = createPlugin((config: RetryConfig = {}): PluginOptions => {
+export const retryPlugin = createPlugin('retry', (config?: RetryConfig) => {
   const mergedConfig: Required<RetryConfig> = {
     ...defaultConfig,
     ...config,
-    shouldRetry: config.shouldRetry || defaultConfig.shouldRetry,
-    onRetry: config.onRetry || defaultConfig.onRetry,
-    retryStatusCodes: config.retryStatusCodes || defaultConfig.retryStatusCodes,
-    retryMethods: config.retryMethods || defaultConfig.retryMethods,
+    shouldRetry: config?.shouldRetry || defaultConfig.shouldRetry,
+    onRetry: config?.onRetry || defaultConfig.onRetry,
+    retryStatusCodes: config?.retryStatusCodes || defaultConfig.retryStatusCodes,
+    retryMethods: config?.retryMethods || defaultConfig.retryMethods,
   };
 
   return {
