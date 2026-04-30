@@ -1,5 +1,7 @@
 # @endpoint-fetcher/retry
 
+![NPM Downloads](https://img.shields.io/npm/d18m/%40endpoint-fetcher%2Fretry?style=for-the-badge)
+
 A configurable retry plugin for [endpoint-fetcher](https://endpoint-fetcher.lorenzovecchio.dev/) with multiple retry strategies and advanced configuration options.
 
 ## Installation
